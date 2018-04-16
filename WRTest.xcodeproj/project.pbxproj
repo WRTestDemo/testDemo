@@ -14,6 +14,7 @@
 		7B19C3EB2084ABC700B22A37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B19C3E92084ABC700B22A37 /* LaunchScreen.storyboard */; };
 		7B19C3F62084ABC800B22A37 /* WRTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B19C3F52084ABC800B22A37 /* WRTestTests.swift */; };
 		7B19C4012084ABC800B22A37 /* WRTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B19C4002084ABC800B22A37 /* WRTestUITests.swift */; };
+		7B19C4112084C70A00B22A37 /* frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 7B19C4102084C70A00B22A37 /* frameworks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7B19C3FC2084ABC800B22A37 /* WRTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WRTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B19C4002084ABC800B22A37 /* WRTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRTestUITests.swift; sourceTree = "<group>"; };
 		7B19C4022084ABC800B22A37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B19C4102084C70A00B22A37 /* frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = frameworks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				7B19C3DF2084ABC700B22A37 /* WRTest */,
-				7B19C3F42084ABC800B22A37 /* WRTestTests */,
-				7B19C3FF2084ABC800B22A37 /* WRTestUITests */,
+				7B19C40F2084C6DA00B22A37 /* Support */,
 				7B19C3DE2084ABC700B22A37 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +124,16 @@
 				7B19C4022084ABC800B22A37 /* Info.plist */,
 			);
 			path = WRTestUITests;
+			sourceTree = "<group>";
+		};
+		7B19C40F2084C6DA00B22A37 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7B19C4102084C70A00B22A37 /* frameworks */,
+				7B19C3F42084ABC800B22A37 /* WRTestTests */,
+				7B19C3FF2084ABC800B22A37 /* WRTestUITests */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 				7B19C3EB2084ABC700B22A37 /* LaunchScreen.storyboard in Resources */,
 				7B19C3E82084ABC700B22A37 /* Assets.xcassets in Resources */,
 				7B19C3E62084ABC700B22A37 /* Main.storyboard in Resources */,
+				7B19C4112084C70A00B22A37 /* frameworks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -400,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
