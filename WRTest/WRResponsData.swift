@@ -17,4 +17,13 @@ struct WRDataDetails {
     var title: String?
     var imageUrl: String?
     var describe: String?
+    
+    func isValid() -> Bool {
+        if title == nil
+        && imageUrl == nil
+        && describe == nil {
+            return false
+        }
+        return true
+    }
 }

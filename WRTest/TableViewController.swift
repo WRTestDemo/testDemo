@@ -8,16 +8,46 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+let kPlacholderTitle = "Title"
 
+enum ENetworkingStatue: Int {
+    case nomal
+    case loading
+    case success
+    case failed
+}
+
+class TableViewController: UITableViewController {
+    
+    var viewModal = WRViewModal()
+    
+    var state = ENetworkingStatue.nomal {
+        didSet(value) {
+            setRightBarButton(state == .loading)
+            
+            switch value {
+            case .nomal:
+                
+                break
+            case .loading:
+                
+                break
+            case .success:
+                break
+            case .failed:
+                break
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        setupNav()
+        setupTableView()
+        setupNotifications()
+        
+        refreshNow()
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,71 +55,109 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: ---------------------- setup
+    func setupNav() {
+        title = kPlacholderTitle
+        setupRefreshButtonAndIndicator()
+    }
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: .requestFinished, name: NSNotification.Name(rawValue: kRequestDataFinishedNotification), object: nil)
+    }
+    
+    func setupTableView() {
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        registerTableCells()
+    }
+    
+    func registerTableCells() {
+        tableView.register(WRTableViewCell.self, forCellReuseIdentifier: "WRTableViewCell")
+    }
+    
+    //refresh button & indicator
+    var refreshBarButtonActivityIndicator: UIBarButtonItem!
+    var refreshBarButton: UIBarButtonItem!
+    
+    func setupRefreshButtonAndIndicator() {
+        ///Setting Reload Button
+        refreshBarButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: .refreshPressed)
+        
+        ///Setting activity Indicator
+        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        refreshBarButtonActivityIndicator = UIBarButtonItem(customView: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        state = .nomal
+    }
+    
+    func setRightBarButton(_ isLoading: Bool) {
+        navigationItem.rightBarButtonItem = isLoading ? refreshBarButtonActivityIndicator : refreshBarButton
+    }
+    
+    //MARK: ----------------------- request
+    func refreshNow() {
+        //loading statue
+        state = .loading
+        viewModal.requestData()
+        
+//        weak var weakSelf = self
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//            weakSelf?.statue = .nomal
+//        }
+    }
+    
+    func reloadData() {
+        title = (viewModal.data?.title != nil) ? viewModal.data?.title : kPlacholderTitle
+        tableView.reloadData()
+    }
+    
+    //MARK: Notifications
+    func requestDataFinished(_ noti: Notification) {
+        let info = noti.userInfo as! [String: ENetworkingStatue]
+        let state = info["state"]
+        
+        self.state = state!
+        
+        if state == ENetworkingStatue.success{
+            reloadData()
+        }else {
+            //TODO: show failed tips
+        }
+    }
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if viewModal.data != nil {
+            return (viewModal.data?.rows?.count)!
+        }
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WRTableViewCell", for: indexPath) as! WRTableViewCell
+        
+        //set cellData from response data(WRDataDetails)
+        let rowData = viewModal.data?.rows?[indexPath.row] as! WRDataDetails
+        cell.cellData = CellData(title: rowData.title, desc: rowData.describe, imageUrl: rowData.imageUrl)
+        
+        cell.layoutIfNeeded()
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+ 
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
-    */
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//MARK: -
+private extension Selector {
+    static let refreshPressed = #selector(TableViewController.refreshNow)
+    static let requestFinished = #selector(TableViewController.requestDataFinished(_:))
 }

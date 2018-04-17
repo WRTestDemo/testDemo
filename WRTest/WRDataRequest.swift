@@ -17,16 +17,18 @@ protocol WRDataRequestDelegate {
 class WRDataRequest: AFHTTPSessionManager {
     static let sharedInstance = WRDataRequest()
     
+    var url: String?
     var delegate: WRDataRequestDelegate?
     
     func requestData(_ url: String!) {
+        self.url = url
         
         //set response
         self.responseSerializer = AFHTTPResponseSerializer()
         self.responseSerializer.acceptableContentTypes?.insert("text/plain")
         
         //GET
-        _ = [get(url, parameters: nil, progress: { (progress: Progress) in
+        get(url, parameters: nil, progress: { (progress: Progress) in
             
         }, success: { (task: URLSessionDataTask, responseObject: Any?) in
             
@@ -47,26 +49,22 @@ class WRDataRequest: AFHTTPSessionManager {
             
         }) { (task: URLSessionDataTask?, error: Error) in
             self.delegate?.dataRequestFail(task: task, error)
-        }]
+        }
     }
     
     static func jsonParse(_ jsonDic: [String: Any]) -> WRResponsData? {
 //        if jsonDic != nil {
-            var responsData = WRResponsData()
-            responsData.title = jsonDic["title"] as? String
-            responsData.rows = jsonDic["rows"] as? Array
+            var responsData = WRResponsData(title: jsonDic["title"] as? String, rows: jsonDic["rows"] as? Array)
             
             var detailsArr = Array<Any>()
 
             for obj in responsData.rows! {
                 let dic = obj as! [String: String?]
                 
-                var detail = WRDataDetails()
-                detail.title = dic["title"]!
-                detail.describe = dic["description"]!
-                detail.imageUrl = dic["imageHref"]!
-                
-                detailsArr.append(detail)
+                let detail = WRDataDetails(title: dic["title"]!, imageUrl: dic["imageHref"]!, describe: dic["description"]!)
+                if detail.isValid() {
+                    detailsArr.append(detail)
+                }
             }
             responsData.rows = detailsArr
             
