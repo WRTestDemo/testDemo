@@ -36,6 +36,18 @@ class WRTipsView: UIView {
         layer.masksToBounds = true
     }
     
+    /// show tipsView then dismiss
+    ///
+    /// - Parameters:
+    ///   - duration: after duration tipsView dismiss
+    ///   - type: ETipsType
+    static func showTipsView(_ duration: DispatchTime, _ type: ETipsType, _ superview: UIView) {
+        WRTipsView.showTipsView(type, superview)
+        DispatchQueue.main.asyncAfter(deadline: duration, execute: {
+            WRTipsView.hideTipsView(superview)
+        })
+    }
+    
     static func showTipsView(_ type: ETipsType, _ superView: UIView) {
         //protect
         WRTipsView.hideTipsView(superView)
