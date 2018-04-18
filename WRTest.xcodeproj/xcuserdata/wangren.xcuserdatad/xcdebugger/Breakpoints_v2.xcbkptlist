@@ -4,35 +4,17 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WRTest/WRTableViewCell.swift"
-            timestampString = "545723611.574597"
+            timestampString = "545740470.53193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "layoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -43,44 +25,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WRTest/WRViewModal.swift"
-            timestampString = "545718004.815845"
+            filePath = "WRTest/WRTableViewCell.swift"
+            timestampString = "545740670.833914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "downloadImage(_:_:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "layoutSubviews()"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "WRTest.WRViewModal.downloadImage (Swift.Optional&lt;Swift.String&gt;, Foundation.IndexPath) -&gt; ()"
+                  symbolName = "WRTest.WRTableViewCell.layoutSubviews () -&gt; ()"
                   moduleName = "WRTest"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/WRViewModal.swift"
-                  timestampString = "545713265.25563"
+                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/WRTableViewCell.swift"
+                  timestampString = "545742573.2880189"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "2217">
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "3730">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "WRTest.WRViewModal.(downloadImage (Swift.Optional&lt;Swift.String&gt;, Foundation.IndexPath) -&gt; ()).(closure #1)"
+                  symbolName = "WRTest.WRTableViewCell.(layoutSubviews () -&gt; ()).(closure #1)"
                   moduleName = "WRTest"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/WRViewModal.swift"
-                  timestampString = "545713265.258442"
+                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/WRTableViewCell.swift"
+                  timestampString = "545742573.290704"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "20">
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -88,16 +70,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WRTest/WRViewModal.swift"
-            timestampString = "545718275.676219"
+            filePath = "WRTest/TableViewController.swift"
+            timestampString = "545742353.874342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "downloadImage(_:_:)"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "updateImageForCell(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -108,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WRTest/TableViewController.swift"
-            timestampString = "545722763.8624721"
+            timestampString = "545743276.882417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -123,13 +105,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WRTest/TableViewController.swift"
-            timestampString = "545722763.8624721"
+            filePath = "WRTest/WRViewModal.swift"
+            timestampString = "545740890.120158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "loadImageForCells()"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "downloadImage(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -139,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WRTest/TableViewController.swift"
-            timestampString = "545719223.771163"
+            filePath = "WRTest/WRViewModal.swift"
+            timestampString = "545740907.350937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "updateImageForCell(_:)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "downloadImage(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -156,45 +138,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WRTest/TableViewController.swift"
-            timestampString = "545722763.8624721"
+            timestampString = "545741546.778558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "requestDataFinished(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WRTest.TableViewController.tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "WRTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/TableViewController.swift"
-                  timestampString = "545717303.106698"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "295">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WRTest.TableViewController.tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "WRTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangren/Desktop/Demo/WRTest/WRTest/TableViewController.swift"
-                  timestampString = "545717303.109831"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "2154">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -17,6 +17,7 @@ struct CellData {
     var title: String?
     var desc: String?
     var imageUrl: String?
+    var image: UIImage?
 }
 
 class WRTableViewCell: UITableViewCell {
@@ -25,7 +26,7 @@ class WRTableViewCell: UITableViewCell {
     
     lazy var imgView: UIImageView = {
         var imgV = UIImageView(image: nil)
-        imgV.backgroundColor = .green
+//        imgV.backgroundColor = .green
         self.addSubview(imgV)
         
         return imgV
@@ -36,7 +37,7 @@ class WRTableViewCell: UITableViewCell {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
-        label.backgroundColor = .red
+//        label.backgroundColor = .red
         self.addSubview(label)
         
         return label
@@ -47,7 +48,7 @@ class WRTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = .yellow
+//        label.backgroundColor = .yellow
         self.addSubview(label)
         
         return label
@@ -63,12 +64,12 @@ class WRTableViewCell: UITableViewCell {
         titleLabel.mas_makeConstraints { (_ make: MASConstraintMaker!) in
             make.top.equalTo()(imgView.mas_bottom)?.offset()(CGFloat(kMiddleGap))
             make.left.equalTo()(self)?.offset()(CGFloat(kNormalGap))
-            make.right.equalTo()(self)?.offset()(-(CGFloat)(kNormalGap))
+            make.right.equalTo()(self)?.offset()((CGFloat)(-kNormalGap))
         }
         descLabel.mas_makeConstraints { (_ make: MASConstraintMaker!) in
             make.top.equalTo()(titleLabel.mas_bottom)?.offset()(CGFloat(kSmallGap))
             make.left.equalTo()(titleLabel.mas_left)
-            make.bottom.equalTo()(self)?.offset()(-(CGFloat)(kNormalGap))
+            make.bottom.equalTo()(self)?.offset()((CGFloat)(-kNormalGap))
             make.right.equalTo()(titleLabel.mas_right)
         }
     }
@@ -81,33 +82,8 @@ class WRTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     var isFistTimeToUpdateImage = true
-    func updateImageView(image: UIImage) {
-        if isFistTimeToUpdateImage{
-            //updateConstraints only once
-            imgView.mas_updateConstraints({ (make: MASConstraintMaker!) in
-                make.height.equalTo()(image.size.height)
-                make.width.equalTo()(image.size.width)
-            })
-            
-            imgView.setNeedsUpdateConstraints()
-            imgView.updateConstraints()
-            
-            isFistTimeToUpdateImage = false
-        }
-        imgView.image = image
-        
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -118,11 +94,31 @@ class WRTableViewCell: UITableViewCell {
             
             titleLabel.sizeToFit()
             descLabel.sizeToFit()
+            
+            imgView.image = cellData?.image
+            
+            if imgView.image != nil {
+                //updateConstraints only once
+                imgView.mas_updateConstraints({ (make: MASConstraintMaker!) in
+                    make.height.equalTo()(imgView.image?.size.height)
+                    make.width.equalTo()(imgView.image?.size.width)
+                    
+                })
+                
+                imgView.setNeedsUpdateConstraints()
+                imgView.updateConstraints()
+                
+//                isFistTimeToUpdateImage = false
+            }
+            
+            titleLabel.setNeedsUpdateConstraints()
+            descLabel.setNeedsUpdateConstraints()
+            
+            updateConstraints()
         }
     }
     
-    func getCellHeight() -> CGFloat{
-        let height = (imgView.frame.size.height + titleLabel.frame.size.height + descLabel.frame.size.height + 10 * 2 + 8 + 5)
-        return height
+    func updateImgViewConstraints() {
+        
     }
 }

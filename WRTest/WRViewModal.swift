@@ -15,7 +15,9 @@ let kUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 let kRequestDataFinishedNotification = "requestDataFinishedNotification"
 let kLoadedImageNotification = "loadedImageNotification"
 
+/// operation about data(request/response)
 class WRViewModal: NSObject {
+    //MARK: - data request
     var data: WRResponsData?
     
     lazy var request : WRDataRequest = {
@@ -25,7 +27,13 @@ class WRViewModal: NSObject {
         
         return request
     }()
+
+    /// request origin data
+    func requestData() {
+        request.requestData(kUrl)
+    }
     
+    //MARK: - image
     lazy var imageManager: SDWebImageManager = {
         return SDWebImageManager.shared()
     }()
@@ -34,9 +42,8 @@ class WRViewModal: NSObject {
         return SDImageCache.shared()
     }()
     
-    /// request origin data
-    func requestData() {
-        request.requestData(kUrl)
+    func getCacheImage(_ url: String?) -> UIImage? {
+        return imageCache.imageFromCache(forKey: url)
     }
     
     /// download image by SDWebImage, if has cache, use it first
@@ -46,19 +53,13 @@ class WRViewModal: NSObject {
     func downloadImage(_ url: String?, _ indexPath: IndexPath) {
         if url == nil { return}
         
-        //cleartext
-        let urlBody = url!//?.replacingOccurrences(of: "http://", with: "")
-        
-//        WRImageDownloader.shared.download(urlBody!)
+        let urlBody = url!
         
         //get cache first
-        if let img = imageCache.imageFromMemoryCache(forKey: urlBody) {
-            print("----------- get cache")
-            print(img, indexPath)
-            print("---------------------")
+        if getCacheImage(urlBody) != nil {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kLoadedImageNotification),
                                             object: nil,
-                                            userInfo: ["img": img, "indexPath": indexPath])
+                                            userInfo: ["imgUrl": urlBody, "indexPath": indexPath])
         }else {
             let charSet = CharacterSet(charactersIn: "#%^{}\"[]|\\<>=")
             let imageURL = URL(string: (urlBody.addingPercentEncoding(withAllowedCharacters: charSet.inverted))!)
@@ -72,15 +73,9 @@ class WRViewModal: NSObject {
                     //store to cache
                     weakSelf?.imageCache.store(img, forKey: urlBody, completion: nil)
                     
-                    print("----------- store")
-                    print(img!, indexPath)
-                    print(urlBody)
-                    print("-----------------")
-                    
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: kLoadedImageNotification),
                                                     object: nil,
-                                                    userInfo: ["img": img!, "indexPath": indexPath])
-                    
+                                                    userInfo: ["imgUrl": urlBody, "indexPath": indexPath])
                 }
             })
         }
@@ -89,6 +84,7 @@ class WRViewModal: NSObject {
     }
 }
 
+//MARK: - WRDataRequestDelegate
 extension WRViewModal: WRDataRequestDelegate {
     func dataRequestSuccessful(task: URLSessionDataTask, responseObject: Any?) {
         if (responseObject != nil) {

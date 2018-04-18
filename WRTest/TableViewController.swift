@@ -27,10 +27,8 @@ class TableViewController: UITableViewController {
             
             switch value {
             case .nomal:
-                
                 break
             case .loading:
-                
                 break
             case .success:
                 break
@@ -69,8 +67,11 @@ class TableViewController: UITableViewController {
     }
     
     func setupTableView() {
+        //autolayout height
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
+        //not allow to select
+        tableView.allowsSelection = false
         
         registerTableCells()
     }
@@ -120,40 +121,38 @@ class TableViewController: UITableViewController {
         self.state = state!
         
         if state == ENetworkingStatue.success{
+//            tableView.setContentOffset(CGPoint(x: 0, y: -(navigationController?.navigationBar.frame.size.height)!), animated: true)
             reloadData()
         }else {
             //TODO: show failed tips
         }
     }
     
+    //loading image finished & set cell.image
     func updateImageForCell(_ notification: Notification) {
         let info = notification.userInfo
-        let image = info?["img"] as! UIImage
+        let imageUrl = info?["imgUrl"] as! String
         let indexPath = info?["indexPath"] as! IndexPath
-        
         
         //get cell from indexPath
         let cell = tableView.cellForRow(at: indexPath) as? WRTableViewCell
-//        cell.imgView.image = image
+        cell?.cellData?.image = viewModal.getCacheImage(imageUrl)
         
-        print("----------- set cell")
-        print(image, indexPath)
-        print(cell?.cellData?.imageUrl)
-        print("--------------------")
-
-//        DispatchQueue.main.async {
-            cell?.updateImageView(image: image)
-//        }
+        cell?.setNeedsLayout()
+        cell?.layoutIfNeeded()
         
-//        cell.setNeedsLayout()
-//        cell.layoutIfNeeded()
+        tableView.reloadData()
     }
     
+    //lazy loading image of cell
     func loadImageForCells() {
         let cells = tableView.indexPathsForVisibleRows!
         for indexPath in cells {
             let cell = tableView.cellForRow(at: indexPath) as? WRTableViewCell
-            viewModal.downloadImage(cell?.cellData?.imageUrl, indexPath)
+            
+            if cell?.imgView.image == nil {
+                viewModal.downloadImage(cell?.cellData?.imageUrl, indexPath)
+            }
         }
     }
 }
@@ -172,24 +171,22 @@ extension TableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WRTableViewCell", for: indexPath) as! WRTableViewCell
+        var cell = tableView.cellForRow(at: indexPath) as? WRTableViewCell
         
+        if cell == nil {
+            cell = WRTableViewCell(style: .default, reuseIdentifier: "WRTableViewCell")
+        }
         //set cellData from response data(WRDataDetails)
         let rowData = viewModal.data?.rows?[indexPath.row] as! WRDataDetails
-        cell.cellData = CellData(title: rowData.title, desc: rowData.describe, imageUrl: rowData.imageUrl)
+        cell?.cellData = CellData(title: rowData.title,
+                                  desc: rowData.describe,
+                                  imageUrl: rowData.imageUrl,
+                                  image: viewModal.getCacheImage(rowData.imageUrl))
         
-        cell.layoutIfNeeded()
+        cell?.layoutIfNeeded()
         
-        return cell
+        return cell!
     }
-    
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "WRTableViewCell", for: indexPath) as! WRTableViewCell
-////        if cell ！= nil{
-//            return cell.getCellHeight()
-////        }
-//        return UITableViewAutomaticDimension
-//    }
 }
 
 //MARK: - scroll
