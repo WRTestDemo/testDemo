@@ -1,0 +1,9 @@
+[submodule "Masonry"]
+	path = Masonry
+	url = https://github.com/SnapKit/Masonry.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking.git
+[submodule "SDWebImage"]
+	path = SDWebImage
+	url = https://github.com/rs/SDWebImage.git
