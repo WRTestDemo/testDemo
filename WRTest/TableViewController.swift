@@ -123,9 +123,24 @@ class TableViewController: UITableViewController {
         if state == ENetworkingStatue.success{
 //            tableView.setContentOffset(CGPoint(x: 0, y: -(navigationController?.navigationBar.frame.size.height)!), animated: true)
             reloadData()
+            showTipsView(.now() + 1.5, .successed)
         }else {
-            //TODO: show failed tips
+            showTipsView(.now() + 1.5, .failed)
         }
+    }
+    
+    
+    /// show tipsView then dismiss
+    ///
+    /// - Parameters:
+    ///   - duration: after duration tipsView dismiss
+    ///   - type: ETipsType
+    func showTipsView(_ duration: DispatchTime, _ type: ETipsType) {
+        WRTipsView.showTipsView(type, view)
+        weak var weakSelf = self
+        DispatchQueue.main.asyncAfter(deadline: duration, execute: {
+            WRTipsView.hideTipsView((weakSelf?.view)!)
+        })
     }
     
     //loading image finished & set cell.image

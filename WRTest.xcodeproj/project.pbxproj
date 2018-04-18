@@ -13,6 +13,7 @@
 		7B0A1FDF20863B6E00E78367 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0A1FCE20863B4A00E78367 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B0A201A2086407D00E78367 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0A20112086406C00E78367 /* SDWebImage.framework */; };
 		7B0A201C2086418000E78367 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0A201B2086418000E78367 /* ImageIO.framework */; };
+		7B0A202020876C8F00E78367 /* WRTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A201F20876C8F00E78367 /* WRTipsView.swift */; };
 		7B1763B9208573530017C017 /* WRResponsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1763B8208573530017C017 /* WRResponsData.swift */; };
 		7B19C3E12084ABC700B22A37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B19C3E02084ABC700B22A37 /* AppDelegate.swift */; };
 		7B19C3E32084ABC700B22A37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B19C3E22084ABC700B22A37 /* ViewController.swift */; };
@@ -205,6 +206,7 @@
 		7B0A200220863D5100E78367 /* WRTest-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WRTest-Bridge-Header.h"; sourceTree = "<group>"; };
 		7B0A20032086406C00E78367 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		7B0A201B2086418000E78367 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7B0A201F20876C8F00E78367 /* WRTipsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRTipsView.swift; sourceTree = "<group>"; };
 		7B1763B8208573530017C017 /* WRResponsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRResponsData.swift; sourceTree = "<group>"; };
 		7B19C3DD2084ABC700B22A37 /* WRTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B19C3E02084ABC700B22A37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				7B19C3E02084ABC700B22A37 /* AppDelegate.swift */,
 				7B19C3E22084ABC700B22A37 /* ViewController.swift */,
 				7B5852572085942100240519 /* TableViewController.swift */,
+				7B0A201F20876C8F00E78367 /* WRTipsView.swift */,
 				7B5852702085F12600240519 /* WRViewModal.swift */,
 				7B5852732085F6B700240519 /* WRTableViewCell.swift */,
 				7B5852722085F4C200240519 /* Request */,
@@ -644,6 +647,7 @@
 				7B5852742085F6B700240519 /* WRTableViewCell.swift in Sources */,
 				7B5852582085942100240519 /* TableViewController.swift in Sources */,
 				7B1763B9208573530017C017 /* WRResponsData.swift in Sources */,
+				7B0A202020876C8F00E78367 /* WRTipsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
