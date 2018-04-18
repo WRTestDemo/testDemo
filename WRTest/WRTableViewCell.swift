@@ -48,6 +48,7 @@ class WRTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
 //        label.backgroundColor = .yellow
         self.addSubview(label)
         
@@ -92,8 +93,8 @@ class WRTableViewCell: UITableViewCell {
             titleLabel.text = cellData?.title
             descLabel.text = cellData?.desc
             
-            titleLabel.sizeToFit()
-            descLabel.sizeToFit()
+//            titleLabel.sizeToFit()
+//            descLabel.sizeToFit()
             
             imgView.image = cellData?.image
             
