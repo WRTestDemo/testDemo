@@ -21,7 +21,7 @@ class WRViewModal: NSObject {
     var data: WRResponsData?
     
     lazy var request : WRDataRequest = {
-        var request = WRDataRequest.sharedInstance
+        var request = WRDataRequest()
         request.delegate = self
         request.requestSerializer.timeoutInterval = 5
         
@@ -35,11 +35,11 @@ class WRViewModal: NSObject {
     
     //MARK: - image
     lazy var imageManager: SDWebImageManager = {
-        return SDWebImageManager.shared()
+        return SDWebImageManager()
     }()
     
     lazy var imageCache: SDImageCache = {
-        return SDImageCache.shared()
+        return SDImageCache()
     }()
     
     func getCacheImage(_ url: String?) -> UIImage? {

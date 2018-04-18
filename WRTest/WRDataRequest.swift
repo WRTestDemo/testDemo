@@ -15,8 +15,6 @@ protocol WRDataRequestDelegate {
 }
 
 class WRDataRequest: AFHTTPSessionManager {
-    static let sharedInstance = WRDataRequest()
-    
     var url: String?
     var delegate: WRDataRequestDelegate?
     
