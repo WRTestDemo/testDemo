@@ -39,7 +39,7 @@ class WRTipsView: UIView {
     /// show tipsView then dismiss
     ///
     /// - Parameters:
-    ///   - duration: after duration tipsView dismiss
+    ///   - duration: after duration tipsView will dismiss
     ///   - type: ETipsType
     static func showTipsView(_ duration: DispatchTime, _ type: ETipsType, _ superview: UIView) {
         WRTipsView.showTipsView(type, superview)
@@ -67,13 +67,7 @@ class WRTipsView: UIView {
     }
     
     static func hideTipsView(_ superView: UIView) {
-//        let tipsView = WRTipsView().viewWithTag(kTipsViewTag)
-//        tipsView?.removeFromSuperview()
-        for view in superView.subviews {
-            if view.tag == kTipsViewTag {
-                view.removeFromSuperview()
-                break
-            }
-        }
+        let tipsView = superView.viewWithTag(kTipsViewTag)
+        tipsView?.removeFromSuperview()
     }
 }
