@@ -89,37 +89,32 @@ class WRTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         if cellData != nil {
-            
             titleLabel.text = cellData?.title
             descLabel.text = cellData?.desc
-            
-//            titleLabel.sizeToFit()
-//            descLabel.sizeToFit()
-            
             imgView.image = cellData?.image
             
-            if imgView.image != nil {
+            if imgView.image != nil && isFistTimeToUpdateImage{
                 //updateConstraints only once
-                imgView.mas_updateConstraints({ (make: MASConstraintMaker!) in
-                    make.height.equalTo()(imgView.image?.size.height)
-                    make.width.equalTo()(imgView.image?.size.width)
-                    
-                })
+                updateImgViewConstraints()
                 
-                imgView.setNeedsUpdateConstraints()
-                imgView.updateConstraints()
-                
-//                isFistTimeToUpdateImage = false
+                isFistTimeToUpdateImage = false
             }
-            
-            titleLabel.setNeedsUpdateConstraints()
-            descLabel.setNeedsUpdateConstraints()
-            
-            updateConstraints()
         }
     }
     
     func updateImgViewConstraints() {
+        imgView.mas_updateConstraints({ (make: MASConstraintMaker!) in
+            make.height.equalTo()(imgView.image?.size.height)
+            make.width.equalTo()(imgView.image?.size.width)
+            
+        })
         
+        imgView.setNeedsUpdateConstraints()
+        imgView.updateConstraints()
+        
+//        titleLabel.setNeedsUpdateConstraints()
+//        descLabel.setNeedsUpdateConstraints()
+        
+        updateConstraints()
     }
 }
