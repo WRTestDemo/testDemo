@@ -115,6 +115,6 @@ class WRTableViewCell: UITableViewCell {
 //        titleLabel.setNeedsUpdateConstraints()
 //        descLabel.setNeedsUpdateConstraints()
         
-        updateConstraints()
+//        updateConstraints()
     }
 }

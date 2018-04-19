@@ -48,6 +48,11 @@ class WRTipsView: UIView {
         })
     }
     
+    /// show tipsView (will not dismiss), dismiss by hideTipsView(:)
+    ///
+    /// - Parameters:
+    ///   - type: <#type description#>
+    ///   - superView: <#superView description#>
     static func showTipsView(_ type: ETipsType, _ superView: UIView) {
         //protect
         WRTipsView.hideTipsView(superView)
@@ -66,6 +71,9 @@ class WRTipsView: UIView {
         tipsView.tipsLabel.text = type.rawValue
     }
     
+    /// hide tipsView
+    ///
+    /// - Parameter superView: <#superView description#>
     static func hideTipsView(_ superView: UIView) {
         let tipsView = superView.viewWithTag(kTipsViewTag)
         tipsView?.removeFromSuperview()

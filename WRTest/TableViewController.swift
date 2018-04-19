@@ -24,7 +24,7 @@ class TableViewController: UITableViewController {
     var state = ENetworkingStatue.nomal {
         didSet(value) {
             setRightBarButton(state == .loading)
-            
+/*
             switch value {
             case .nomal:
                 break
@@ -35,12 +35,14 @@ class TableViewController: UITableViewController {
             case .failed:
                 break
             }
+ */
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //basic setting
         setupNav()
         setupTableView()
         setupNotifications()
@@ -129,7 +131,7 @@ class TableViewController: UITableViewController {
         }
     }
     
-    //loading image finished & set cell.image
+    ///loading image finished & set cell.image
     func updateImageForCell(_ notification: Notification) {
         let info = notification.userInfo
         let imageUrl = info?["imgUrl"] as! String
@@ -145,7 +147,7 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    //lazy loading image of cell
+    ///lazy loading image of visible cell
     func loadImageForCells() {
         let cells = tableView.indexPathsForVisibleRows!
         for indexPath in cells {
@@ -193,12 +195,14 @@ extension TableViewController {
 //MARK: - scroll
 extension TableViewController {
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        //load cell image when scroll stop
         if !decelerate {
             loadImageForCells()
         }
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //as above
         loadImageForCells()
     }
 }
