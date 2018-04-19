@@ -172,10 +172,10 @@ extension TableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.cellForRow(at: indexPath) as? WRTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "WRTableViewCell" + String(indexPath.row)) as? WRTableViewCell
         
         if cell == nil {
-            cell = WRTableViewCell(style: .default, reuseIdentifier: "WRTableViewCell")
+            cell = WRTableViewCell(style: .default, reuseIdentifier: "WRTableViewCell" + String(indexPath.row))
         }
         //set cellData from response data(WRDataDetails)
         let rowData = viewModal.data?.rows?[indexPath.row] as! WRDataDetails
