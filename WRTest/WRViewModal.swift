@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import SDWebImage
 
-let kUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
-
 let kRequestDataFinishedNotification = "requestDataFinishedNotification"
 let kLoadedImageNotification = "loadedImageNotification"
 
@@ -30,7 +28,7 @@ class WRViewModal: NSObject {
 
     /// request origin data
     func requestData() {
-        request.requestData(kUrl)
+        request.requestData()
     }
     
     //MARK: - image

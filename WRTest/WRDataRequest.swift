@@ -9,6 +9,8 @@
 import UIKit
 import AFNetworking
 
+let kUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+
 protocol WRDataRequestDelegate {
     func dataRequestSuccessful(task: URLSessionDataTask, responseObject: Any?)
     func dataRequestFail(task: URLSessionDataTask?, _ error: Error)
@@ -18,15 +20,15 @@ class WRDataRequest: AFHTTPSessionManager {
     var url: String?
     var delegate: WRDataRequestDelegate?
     
-    func requestData(_ url: String!) {
-        self.url = url
+    func requestData() {
+        self.url = kUrl
         
         //set response
         self.responseSerializer = AFHTTPResponseSerializer()
         self.responseSerializer.acceptableContentTypes?.insert("text/plain")
         
         //GET
-        get(url, parameters: nil, progress: { (progress: Progress) in
+        get(url!, parameters: nil, progress: { (progress: Progress) in
             
         }, success: { (task: URLSessionDataTask, responseObject: Any?) in
             
