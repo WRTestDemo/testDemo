@@ -13,7 +13,7 @@ let kUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 
 protocol WRDataRequestDelegate {
     func dataRequestSuccessful(task: URLSessionDataTask, responseObject: Any?)
-    func dataRequestFail(task: URLSessionDataTask?, _ error: Error)
+    func dataRequestFail(task: URLSessionDataTask?, error: ENetworkingStatue)
 }
 
 class WRDataRequest: AFHTTPSessionManager {
@@ -48,7 +48,8 @@ class WRDataRequest: AFHTTPSessionManager {
             }
             
         }) { (task: URLSessionDataTask?, error: Error) in
-            self.delegate?.dataRequestFail(task: task, error)
+            let errState = WRDataRequest.errorState(code: (error as! URLError).code.rawValue)
+            self.delegate?.dataRequestFail(task: task, error: errState)
         }
     }
     
@@ -72,5 +73,15 @@ class WRDataRequest: AFHTTPSessionManager {
 //        }
 //        
 //        return nil
+    }
+    
+    static func errorState(code: Int) -> ENetworkingStatue {
+        if code == URLError.notConnectedToInternet.rawValue {
+            return .no_Network
+        }else if code == URLError.timedOut.rawValue {
+            return .time_out
+        }else {
+            return .failed
+        }
     }
 }

@@ -11,10 +11,10 @@ import Masonry
 
 let kTipsViewTag = 1010
 
-enum ETipsType: String {
-    case successed
-    case failed
-}
+//enum ETipsType: String {
+//    case successed
+//    case failed
+//}
 
 class WRTipsView: UIView {
     lazy var tipsLabel: UILabel = {
@@ -40,9 +40,9 @@ class WRTipsView: UIView {
     ///
     /// - Parameters:
     ///   - duration: after duration tipsView will dismiss
-    ///   - type: ETipsType
-    static func showTipsView(_ duration: DispatchTime, _ type: ETipsType, _ superview: UIView) {
-        WRTipsView.showTipsView(type, superview)
+    ///   - tips: notice string
+    static func showTipsView(_ duration: DispatchTime, _ tips: String, _ superview: UIView) {
+        WRTipsView.showTipsView(tips, superview)
         DispatchQueue.main.asyncAfter(deadline: duration, execute: {
             WRTipsView.hideTipsView(superview)
         })
@@ -53,7 +53,7 @@ class WRTipsView: UIView {
     /// - Parameters:
     ///   - type: <#type description#>
     ///   - superView: <#superView description#>
-    static func showTipsView(_ type: ETipsType, _ superView: UIView) {
+    static func showTipsView(_ tips: String, _ superView: UIView) {
         //protect
         WRTipsView.hideTipsView(superView)
         
@@ -68,7 +68,7 @@ class WRTipsView: UIView {
             make.height.equalTo()(65)
         }
         
-        tipsView.tipsLabel.text = type.rawValue
+        tipsView.tipsLabel.text = tips
     }
     
     /// hide tipsView

@@ -10,10 +10,12 @@ import UIKit
 
 let kPlacholderTitle = "Title"
 
-enum ENetworkingStatue: Int {
+enum ENetworkingStatue: String {
     case nomal
     case loading
     case success
+    case no_Network
+    case time_out
     case failed
 }
 
@@ -125,10 +127,8 @@ class TableViewController: UITableViewController {
         if state == ENetworkingStatue.success{
 //            tableView.setContentOffset(CGPoint(x: 0, y: -(navigationController?.navigationBar.frame.size.height)!), animated: true)
             reloadData()
-            WRTipsView.showTipsView(.now() + 1.5, .successed, view)
-        }else {
-            WRTipsView.showTipsView(.now() + 1.5, .failed, view)
         }
+        WRTipsView.showTipsView(.now() + 1.5, self.state.rawValue, view)
     }
     
     ///loading image finished & set cell.image

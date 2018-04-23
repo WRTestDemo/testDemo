@@ -21,7 +21,7 @@ class WRViewModal: NSObject {
     lazy var request : WRDataRequest = {
         var request = WRDataRequest()
         request.delegate = self
-        request.requestSerializer.timeoutInterval = 5
+        request.requestSerializer.timeoutInterval = 0.5
         
         return request
     }()
@@ -90,7 +90,7 @@ extension WRViewModal: WRDataRequestDelegate {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRequestDataFinishedNotification), object: nil, userInfo: ["state": ENetworkingStatue.success])
         }
     }
-    func dataRequestFail(task: URLSessionDataTask?, _ error: Error) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRequestDataFinishedNotification), object: nil, userInfo: ["state": ENetworkingStatue.failed])
+    func dataRequestFail(task: URLSessionDataTask?, error: ENetworkingStatue) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRequestDataFinishedNotification), object: nil, userInfo: ["state": error])
     }
 }
