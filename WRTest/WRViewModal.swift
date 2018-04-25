@@ -21,7 +21,7 @@ class WRViewModal: NSObject {
     lazy var request : WRDataRequest = {
         var request = WRDataRequest()
         request.delegate = self
-        request.requestSerializer.timeoutInterval = 0.5
+        request.requestSerializer.timeoutInterval = 5
         
         return request
     }()
