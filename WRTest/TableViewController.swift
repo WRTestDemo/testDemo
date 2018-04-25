@@ -105,7 +105,7 @@ class TableViewController: UITableViewController {
     }
     
     //MARK: ----------------------- request
-    func refreshNow() {
+    @objc func refreshNow() {
         //loading state
         state = .loading
         viewModal.requestData()
@@ -118,7 +118,7 @@ class TableViewController: UITableViewController {
     }
     
     //MARK: Notifications
-    func requestDataFinished(_ noti: Notification) {
+    @objc func requestDataFinished(_ noti: Notification) {
         let info = noti.userInfo as! [String: ENetworkingStatue]
         let state = info["state"]
         
@@ -132,7 +132,7 @@ class TableViewController: UITableViewController {
     }
     
     ///loading image finished & set cell.image
-    func updateImageForCell(_ notification: Notification) {
+    @objc func updateImageForCell(_ notification: Notification) {
         let info = notification.userInfo
         let imageUrl = info?["imgUrl"] as! String
         let indexPath = info?["indexPath"] as! IndexPath
