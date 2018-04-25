@@ -63,9 +63,10 @@ class WRTipsView: UIView {
         
         superView.addSubview(tipsView)
         tipsView.mas_makeConstraints { (make: MASConstraintMaker!) in
-            make.center.equalTo()(superView)
-            make.width.equalTo()(95)
-            make.height.equalTo()(65)
+            make.centerX.equalTo()(superView)
+            make.centerY.equalTo()(superView)?.offset()(superView.bounds.origin.y)
+            make.width.equalTo()(100)
+            make.height.equalTo()(45)
         }
         
         tipsView.tipsLabel.text = tips
